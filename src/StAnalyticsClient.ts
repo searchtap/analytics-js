@@ -6,13 +6,13 @@ import {AnalyticsData} from "./domain/Analytics Data";
 
 
 export = class StAnalyticsClient {
-  localUserId: string;
+  private localUserId: string;
   private trackingRestClient!: AxiosInstance;
   private ipv4Address: string;
   private localUserCookieKey = "uId";
   private globalEventProperties: { [prop: string]: any };
 
-  constructor(public collectionUniqueId: string, public searchToken: string) {
+  constructor(private collectionUniqueId: string, private searchToken: string) {
     this.trackingRestClient = Axios.create({
       baseURL: process.env.ST_TRACKING_SERVER,
       headers: {
@@ -27,7 +27,7 @@ export = class StAnalyticsClient {
   /***
    * request new user id from server
    */
-  async requestUserId(): Promise<UserIdResponse | null> {
+  private async requestUserId(): Promise<UserIdResponse | null> {
     let userIdResponse = await this.trackingRestClient.post("/u", {collection: this.collectionUniqueId}).catch(x => x.response);
     if (userIdResponse.status === 200) {
       let userIdBody: UserIdResponse = userIdResponse.data;
@@ -39,7 +39,7 @@ export = class StAnalyticsClient {
   }
 
 
-  user(userId: string) {
+  public user(userId: string) {
     this.localUserId = userId;
     if (typeof window !== 'undefined') {
       this.saveLocalUserIdCookieToBrowser(this.localUserId);

@@ -1,5 +1,6 @@
 import {suite, test, timeout} from "mocha-typescript";
 import StAnalyticsClient from "../src/StAnalyticsClient";
+import {expect} from 'chai'
 
 const nock = require('nock');
 
@@ -7,11 +8,11 @@ const nock = require('nock');
 export class STAnalyticClientSpec {
 
   before() {
-    require('dotenv').config({path:`./.env.${process.env.NODE_ENV}`})
+    require('dotenv').config({path: `./.env.default`})
   }
 
-  @test("test st analytics")
+  @test("test tracking server url")
   async testStAnalytics() {
-    let stAnalyticsClient = new StAnalyticsClient("", "");
+   expect(process.env.ST_TRACKING_SERVER).equals("http://localhost:3004/v2")
   }
 }
