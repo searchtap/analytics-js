@@ -1,7 +1,6 @@
 {
   "name": "@searchtap/st-analytics-js",
   "version": "1.0.0",
-  "description": "Search Client is a lightweight search-only client that handles searches at SearchTap platform.",
   "main": "lib/index.min.js",
   "types": "lib/types/StAnalyticsClient.d.ts",
   "scripts": {
@@ -12,11 +11,6 @@
   },
   "private": true,
   "author": "tech@searchtap.io",
-  "dependencies": {
-    "axios": "^0.18.0",
-    "browser-cookies": "^1.2.0",
-    "dotenv": "^8.0.0"
-  },
   "nyc": {
     "extension": [
       ".ts",
@@ -26,6 +20,11 @@
       "src/**"
     ],
     "all": true
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "browser-cookies": "^1.2.0",
+    "dotenv": "^8.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.2",
