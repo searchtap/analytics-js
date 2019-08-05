@@ -12,5 +12,4 @@ if (process.env.RUN_ENV === "production") {
   logger = console;
 }
 
-
 export = logger;
